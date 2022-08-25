@@ -17,13 +17,13 @@ screen.bgcolor("black")
 screen.title("Arcade Game Pong")
 screen.tracer(0)
 
-
+# Initialize objects
 paddle_right = Paddle((R_PADDLE, 0))
 paddle_left = Paddle((L_PADDLE, 0))
 ball = Ball()
-
 scoreboard = Scoreboard()
 
+# Controls
 screen.listen()
 screen.onkey(paddle_right.go_up, "Up")
 screen.onkey(paddle_right.go_down, "Down")
@@ -48,13 +48,13 @@ while game_on:
         scoreboard.r_point()
         ball.reset_position()
 
+    # Bounce from paddles
     if ball.xcor() > R_PADDLE - 30:
         ball.if_bounce(paddle_right.xcor(), paddle_right.ycor())
         
     if ball.xcor() < L_PADDLE + 30:
         ball.if_bounce(paddle_left.xcor(), paddle_left.ycor())
 
-    
     ball.move()
 
 screen.exitonclick()
